@@ -19,8 +19,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Gradle
+    - name: Setup Gradle and generate wrapper
       uses: gradle/actions/setup-gradle@v5
+      with:
+        gradle-version: 8.2
+
+    - name: Generate wrapper files
+      run: gradle wrapper --gradle-version 8.2
 
     - name: Build APK
       run: ./gradlew assembleDebug
